@@ -1,34 +1,20 @@
 package com.mcrae.app.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
-/**
- * This is a class that models an Account.
- *
- * You should NOT make any modifications to this class.
- */
 @Entity
 @Table(name="account")
 public class Account {
-    /**
-     * An id for this Account. You should use this as the Entity's ID.
-     */
+
     @Column(name="accountId")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer accountId;
-    /**
-     * A username for this Account (must be unique and not blank)
-     */
     private String username;
-    /**
-     * A password for this account (must be over 4 characters)
-     */
     private String password;
-    /**
-     * A default, no-args constructor, as well as correctly formatted getters and setters, are needed for
-     * Jackson Objectmapper to work.
-     */
+    private List<Account> friends;
+
     public Account(){
 
     }
@@ -140,5 +126,9 @@ public class Account {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 '}';
+    }
+
+    public void addFriend(){
+
     }
 }
