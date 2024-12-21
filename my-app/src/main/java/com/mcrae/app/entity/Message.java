@@ -41,6 +41,7 @@ public class Message {
      * Jackson Objectmapper to work.
      */
 
+    @OneToMany
     private List<Like> messageLikes;
 
     public Message(){
