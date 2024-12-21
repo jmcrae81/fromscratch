@@ -13,7 +13,11 @@ public class Account {
     private Integer accountId;
     private String username;
     private String password;
+    @OneToMany
     private List<Account> friends;
+    @OneToMany
+    private List<Message> posts;
+
 
     public Account(){
 
@@ -82,12 +86,7 @@ public class Account {
     public void setPassword(String password) {
         this.password = password;
     }
-    /**
-     * Overriding the default equals() method adds functionality to tell when two objects are identical, allowing
-     * Assert.assertEquals and List.contains to function.
-     * @param  the other object.
-     * @return true if o is equal to this object.
-     */
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

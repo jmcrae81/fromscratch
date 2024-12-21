@@ -1,6 +1,9 @@
 package com.mcrae.app.entity;
 
+import com.mcrae.app.entity.Like;
 import javax.persistence.*;
+import java.util.List;
+
 
 /**
  * This is a class that models a Message.
@@ -37,6 +40,9 @@ public class Message {
      * A default, no-args constructor, as well as correctly formatted getters and setters, are needed for
      * Jackson Objectmapper to work.
      */
+
+    private List<Like> messageLikes;
+
     public Message(){
     }
     /**
@@ -121,12 +127,7 @@ public class Message {
     public void setTimePostedEpoch(Long timePostedEpoch) {
         this.timePostedEpoch = timePostedEpoch;
     }
-    /**
-     * Overriding the default equals() method adds functionality to tell when two objects are identical, allowing
-     * Assert.assertEquals and List.contains to function.
-     * @param o the other object.
-     * @return true if o is equal to this object.
-     */
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
