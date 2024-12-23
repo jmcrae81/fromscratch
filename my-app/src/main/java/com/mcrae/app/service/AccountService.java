@@ -29,6 +29,10 @@ public class AccountService {
         return this.accountRepository.findAccountByUsernameAndPassword(name, password);
     }
 
+    public Account findByUsername(String name){
+        return this.accountRepository.findAccountByUsername(name);
+    }
+
     public List<Account> getAllAccounts(){
         return this.accountRepository.findAll();
     }
