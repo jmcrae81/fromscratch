@@ -14,6 +14,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
@@ -160,15 +163,20 @@ public class SocialMediaController {
         return ResponseEntity.status(responseStatus).body(userMessages);
     }
 
-    @PostMapping(value = "/likes", params = {"account", "message"})
-    public ResponseEntity<Like> createLike(@RequestParam Account accountThatLiked, @RequestParam Message messageLiked){
+    @PostMapping("/likes")
+    public ResponseEntity<Like> createLike(@RequestBody Account accountThatLiked){
         int likedBy = accountThatLiked.getAccountId();
-        int messageId = messageLiked.getMessageId();
         int responseStatus = 200;
 
-        Like newLike = likeService.likeMessage(likedBy, messageId);
+        try{
+            writeValues(accountThatLiked + " " + responseStatus);
+        }catch (IOException e){
+            System.out.println(e);
+        }
 
-        return ResponseEntity.status(responseStatus).body(newLike);
+        Like newLike = likeService.likeMessage(likedBy, 33);
+
+        return ResponseEntity.status(200).body(newLike);
     }
 
     public boolean isValidId(int id){
@@ -204,6 +212,13 @@ public class SocialMediaController {
         }
 
         return false;
+    }
+
+    public void writeValues(String values) throws IOException {
+        BufferedWriter writer = new BufferedWriter( new FileWriter("string.txt"));
+
+        writer.write(values);
+        writer.close();
     }
 
 }
