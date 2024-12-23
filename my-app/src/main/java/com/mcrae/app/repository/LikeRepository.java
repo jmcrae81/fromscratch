@@ -5,5 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public class LikeRepository {
+public interface LikeRepository extends JpaRepository{
+    public List<Like> findAllBylikedMessageId(int likedMessageId);
 }

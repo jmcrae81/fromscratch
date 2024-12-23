@@ -1,8 +1,6 @@
 package com.mcrae.app.entity;
 
-import com.mcrae.app.entity.Like;
 import javax.persistence.*;
-import java.util.List;
 
 
 /**
@@ -40,9 +38,6 @@ public class Message {
      * A default, no-args constructor, as well as correctly formatted getters and setters, are needed for
      * Jackson Objectmapper to work.
      */
-
-    @OneToMany
-    private List<Like> messageLikes;
 
     public Message(){
     }

@@ -2,8 +2,10 @@ package com.mcrae.app.controller;
 
 import com.mcrae.app.entity.Account;
 import com.mcrae.app.entity.Message;
+import com.mcrae.app.entity.Like;
 import com.mcrae.app.service.AccountService;
 import com.mcrae.app.service.MessageService;
+import com.mcrae.app.service.LikeService;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +34,8 @@ public class SocialMediaController {
     AccountService accountService;
     @Autowired
     MessageService messageService;
+    @Autowired
+    LikeService likeService;
 
     @PostMapping("/register")
     public ResponseEntity<Account> registerUser(@RequestBody Account account){
@@ -154,6 +158,17 @@ public class SocialMediaController {
         userMessages = messageService.getMessagesFromPostedBy(postedBy);
             
         return ResponseEntity.status(responseStatus).body(userMessages);
+    }
+
+    @PostMapping(value = "/likes", params = {"account", "message"})
+    public ResponseEntity<Like> createLike(@RequestParam Account accountThatLiked, @RequestParam Message messageLiked){
+        int likedBy = accountThatLiked.getAccountId();
+        int messageId = messageLiked.getMessageId();
+        int responseStatus = 200;
+
+        Like newLike = likeService.likeMessage(likedBy, messageId);
+
+        return ResponseEntity.status(responseStatus).body(newLike);
     }
 
     public boolean isValidId(int id){
