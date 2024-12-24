@@ -60,6 +60,7 @@ public class SecurityConfig {
         http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests.requestMatchers(new AntPathRequestMatcher( "/login", "OPTIONS"),
+                                        new AntPathRequestMatcher( "/register", "OPTIONS"),
                                         new AntPathRequestMatcher("/login", "POST"),
                                         new AntPathRequestMatcher("/register", "POST"))
                                 .permitAll()
