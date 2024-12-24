@@ -13,11 +13,6 @@ public class Account {
     private Integer accountId;
     private String username;
     private String password;
-    @OneToMany
-    private List<Account> friends;
-    @OneToMany
-    private List<Message> posts;
-
 
     public Account(){
 
