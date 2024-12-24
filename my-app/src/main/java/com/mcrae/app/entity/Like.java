@@ -3,6 +3,7 @@ package com.mcrae.app.entity;
 import javax.persistence.*;
 
 @Entity
+@Table(name="likes")
 public class Like {
     private Integer likedBy;
 

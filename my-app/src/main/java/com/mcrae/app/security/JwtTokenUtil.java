@@ -15,6 +15,7 @@ public class JwtTokenUtil {
     @Value("${jwt.secret}")
     private String secret;
 
+
     @Value("${jwt.expiration}")
     private Long expiration;
 
@@ -52,5 +53,9 @@ public class JwtTokenUtil {
     private Boolean isTokenExpired(String token) {
         final Date expiration = getExpirationDateFromToken(token);
         return expiration.before(new Date());
+    }
+
+    public String getSecret(){
+        return secret;
     }
 }

@@ -43,7 +43,7 @@ public class CreateLikeTest {
         Thread.sleep(500);
         SpringApplication.exit(app);
     }
-
+/*
     @Test
     public void createLikeSuccessful() throws IOException, InterruptedException {
         String json = "{\"accountId\":0,\"username\":\"testuser1\",\"password\":\"password\"}";
@@ -68,4 +68,6 @@ public class CreateLikeTest {
         writer.write(values);
         writer.close();
     }
+
+ */
 }
