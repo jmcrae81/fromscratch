@@ -164,6 +164,17 @@ public class SocialMediaController {
         return ResponseEntity.status(responseStatus).body(userMessages);
     }
 
+    @GetMapping("/findFriend/{username}")
+    public ResponseEntity<Account> findByUsername(@PathVariable String username){
+        int responseStatus = 200;
+        Account foundAccount = accountService.findByUsername(username);
+
+        if(foundAccount == null){
+            responseStatus = 404;
+        }
+        return ResponseEntity.status(responseStatus).body(foundAccount);
+    }
+
     @PostMapping("/likes")
     public ResponseEntity<Like> createLike(@RequestBody Account accountThatLiked){
         int likedBy = accountThatLiked.getAccountId();
