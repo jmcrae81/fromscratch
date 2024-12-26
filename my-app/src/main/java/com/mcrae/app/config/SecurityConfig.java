@@ -62,11 +62,11 @@ public class SecurityConfig{
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        /*http.csrf(csrf -> csrf.disable())
+       /* http.csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests.requestMatchers(new AntPathRequestMatcher( "/api/login", "OPTIONS"),
                                         new AntPathRequestMatcher( "/register", "OPTIONS"),
-                                        new AntPathRequestMatcher("/login", "POST"),
+                                        new AntPathRequestMatcher("/api/login", "POST"),
                                         new AntPathRequestMatcher("/register", "POST"))
                                 .permitAll()
                                 .anyRequest().authenticated()
