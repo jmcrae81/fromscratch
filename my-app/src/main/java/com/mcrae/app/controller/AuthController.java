@@ -4,14 +4,24 @@ import com.mcrae.app.entity.Account;
 import com.mcrae.app.service.AccountService;
 import com.mcrae.app.security.JwtTokenUtil;
 
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Cookie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Collection;
+import java.util.List;
+import java.util.Locale;
+
 @RestController
+@CrossOrigin
 @RequestMapping("/api")
 public class AuthController {
     private final AuthenticationManager authenticationManager;
@@ -26,14 +36,22 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody Account user) {
-        try {
-            var authenticationToken = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword());
+    public String login(@RequestBody Account user, HttpServletResponse response) throws BadCredentialsException {
+        String userName = user.getUsername();
+        String password = user.getPassword();
+        if(!password.equals(null)){
+            var authenticationToken = new UsernamePasswordAuthenticationToken(userName, password);
             var authentication = authenticationManager.authenticate(authenticationToken);
             var jwt = jwtTokenUtil.generateToken(authentication.getName());
+
+            Cookie cookie = new Cookie("Authentication", jwt);
+            cookie.setDomain("localhost");
+            cookie.setPath("/");
+            response.addCookie(cookie);
+
             return jwt;
-        } catch (AuthenticationException e) {
-            return "Invalid credentials";
+        } else {
+            throw new BadCredentialsException("Something's wrong!");
         }
     }
 }

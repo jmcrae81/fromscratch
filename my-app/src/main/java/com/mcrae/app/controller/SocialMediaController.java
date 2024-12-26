@@ -74,7 +74,8 @@ public class SocialMediaController {
         return ResponseEntity.status(responseStatus).body(accountToReturn);
         
     }
-    
+
+
     @PostMapping("/messages")
     public ResponseEntity<Message> createMessage(@RequestBody Message message){
         int responseStatus = 400;
