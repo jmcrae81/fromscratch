@@ -6,6 +6,7 @@ import com.mcrae.app.entity.Like;
 import com.mcrae.app.service.AccountService;
 import com.mcrae.app.service.MessageService;
 import com.mcrae.app.service.LikeService;
+import com.mcrae.app.security.SimpleCORSFilter;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,13 +22,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
 
-/**
- * TODO: You will need to write your own endpoints and handlers for your controller using Spring. The endpoints you will need can be
- * found in readme.md as well as the test cases. You be required to use the @GET/POST/PUT/DELETE/etc Mapping annotations
- * where applicable as well as the @ResponseBody and @PathVariable annotations. You should
- * refer to prior mini-project labs and lecture materials for guidance on how a controller may be built.
- */
-@ComponentScan(basePackages="com.example")
+
+@ComponentScan(basePackages="com.mcrae")
 @RestController
 public class SocialMediaController {
     
@@ -59,6 +55,7 @@ public class SocialMediaController {
         return ResponseEntity.status(responseStatus).body(null);        
     }
 
+    @CrossOrigin
     @PostMapping("/login")
     public ResponseEntity<Account> login(@RequestBody Account account){
         int responseStatus = 401;
