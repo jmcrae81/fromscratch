@@ -16,6 +16,7 @@ import java.util.Date;
 import java.util.Map;
 import java.util.Set;
 
+@Service
 public class TokenService {
     private Environment env;
 
