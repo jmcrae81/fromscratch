@@ -22,7 +22,6 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
 
-
 @ComponentScan(basePackages="com.mcrae")
 @RestController
 public class SocialMediaController {
