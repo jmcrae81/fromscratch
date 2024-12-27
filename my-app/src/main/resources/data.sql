@@ -28,3 +28,4 @@ insert into message values (9995, 9996,'User: 9996 post 1',1669947792);
 insert into message values (9994, 9996,'User: 9996 post 2',1669947792);
 insert into message values (9993, 9996,'User: 9996 post 3',1669947792);
 insert into message values (9992, 9996,'User: 9996 post 4',1669947792);
+insert into message values (9001, 9996, 'Off we go, into the Wild Blue Yonder......', 1669947793);
